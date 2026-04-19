@@ -1,0 +1,85 @@
+<div class="detail-page" *ngIf="!loading && lot; else loader">
+
+  <!-- Header -->
+  <div class="detail-header" [class]="colour">
+    <button mat-icon-button (click)="back()" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="header-info">
+      <h1>{{ lot.name }}</h1>
+      <p>{{ lot.address }}</p>
+    </div>
+  </div>
+
+  <!-- Availability card -->
+  <mat-card class="avail-card">
+    <div class="avail-row">
+      <div class="avail-item">
+        <div class="avail-count" [class]="colour">{{ lot.free_4w }}</div>
+        <div class="avail-label">4-Wheeler free</div>
+        <div class="avail-total">of {{ lot.total_4w }}</div>
+      </div>
+      <mat-divider vertical></mat-divider>
+      <div class="avail-item">
+        <div class="avail-count" [class]="colour">{{ lot.free_2w }}</div>
+        <div class="avail-label">2-Wheeler free</div>
+        <div class="avail-total">of {{ lot.total_2w }}</div>
+      </div>
+      <mat-divider vertical></mat-divider>
+      <div class="avail-item">
+        <div class="avail-count total-free" [class]="colour">{{ free }}</div>
+        <div class="avail-label">Total free</div>
+        <div class="avail-total">of {{ total }}</div>
+      </div>
+    </div>
+    <mat-progress-bar mode="determinate" [value]="lot.occupancy_pct"
+      [color]="colour === 'green' ? 'primary' : colour === 'amber' ? 'accent' : 'warn'">
+    </mat-progress-bar>
+    <div class="updated-hint" *ngIf="lastUpdated">
+      Live · updated {{ lastUpdated | timeAgo }}
+    </div>
+  </mat-card>
+
+  <!-- Rates card -->
+  <mat-card class="rates-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>receipt_long</mat-icon>
+      <mat-card-title>PMC Rates</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="rate-row">
+        <span>🚗 Four-wheeler</span>
+        <strong>{{ lot.rate_4w | inr }}/hr</strong>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="rate-row">
+        <span>🛵 Two-wheeler</span>
+        <strong>{{ lot.rate_2w | inr }}/hr</strong>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="rate-row">
+        <span>🕐 Operating hours</span>
+        <strong>{{ lot.operating_hours }}</strong>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Action buttons -->
+  <div class="action-btns">
+    <button mat-stroked-button color="primary" (click)="navigate()" class="action-btn">
+      <mat-icon>navigation</mat-icon> Navigate
+    </button>
+    <button mat-flat-button color="primary" (click)="reserve()" class="action-btn"
+            [disabled]="free === 0">
+      <mat-icon>bookmark_add</mat-icon>
+      {{ free > 0 ? 'Reserve Slot' : 'Lot Full' }}
+    </button>
+  </div>
+
+</div>
+
+<ng-template #loader>
+  <div class="loader-center">
+    <mat-spinner diameter="48"></mat-spinner>
+  </div>
+</ng-template>

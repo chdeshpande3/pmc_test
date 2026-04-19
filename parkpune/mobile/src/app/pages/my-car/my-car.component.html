@@ -1,0 +1,51 @@
+<div class="mycar-page">
+
+  <!-- No pin state -->
+  <div class="empty-state" *ngIf="!pinnedCar">
+    <mat-icon class="empty-icon">directions_car</mat-icon>
+    <h2>No car pinned</h2>
+    <p>After parking, tap "I'm Parked" to pin your car location.</p>
+    <button mat-flat-button color="primary" (click)="pinHere()">
+      <mat-icon>my_location</mat-icon> I'm Parked Here
+    </button>
+  </div>
+
+  <!-- Pinned car state -->
+  <div class="car-info" *ngIf="pinnedCar">
+    <div class="car-header">
+      <mat-icon class="car-icon">directions_car</mat-icon>
+      <div>
+        <h2>Your car is parked</h2>
+        <p>{{ pinnedCar.lot_name }}</p>
+      </div>
+    </div>
+
+    <!-- Time remaining -->
+    <mat-card class="timer-card" [class.expiring]="timeRemaining === 'Expired'">
+      <div class="timer-label">Time remaining</div>
+      <div class="timer-value">{{ timeRemaining }}</div>
+      <div class="timer-end">Until {{ pinnedCar.end_time | date:'d MMM, h:mm a' }}</div>
+    </mat-card>
+
+    <!-- Extend buttons -->
+    <div class="extend-section">
+      <div class="extend-label">Extend parking</div>
+      <div class="extend-btns">
+        <button mat-stroked-button (click)="extendParking(0.5)">+30 min</button>
+        <button mat-stroked-button (click)="extendParking(1)">+1 hr</button>
+        <button mat-stroked-button (click)="extendParking(2)">+2 hr</button>
+      </div>
+    </div>
+
+    <!-- Navigate back -->
+    <button mat-flat-button color="primary" class="nav-btn" (click)="navigateToCar()">
+      <mat-icon>near_me</mat-icon> Navigate to my car
+    </button>
+
+    <!-- Clear -->
+    <button mat-button color="warn" class="clear-btn" (click)="clearPin()">
+      Clear pin
+    </button>
+  </div>
+
+</div>

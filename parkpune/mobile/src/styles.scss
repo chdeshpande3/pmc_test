@@ -1,0 +1,67 @@
+// ParkPune global styles
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$blue-palette, 800);
+$accent:  mat.define-palette(mat.$orange-palette, 600);
+$warn:    mat.define-palette(mat.$red-palette);
+
+$theme: mat.define-light-theme((
+  color: (primary: $primary, accent: $accent, warn: $warn),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($theme);
+
+// ── Reset & base ─────────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background: #f5f7fa;
+  color: #212121;
+}
+
+// ── Mapbox overrides ──────────────────────────────────────────────────────────
+.mapboxgl-map { font-family: inherit; }
+
+// ── Utility classes ───────────────────────────────────────────────────────────
+.text-inr::before { content: '₹'; }
+
+.badge-green  { background: #2e7d32; color: #fff; border-radius: 12px; padding: 2px 8px; font-size: 12px; }
+.badge-amber  { background: #e65100; color: #fff; border-radius: 12px; padding: 2px 8px; font-size: 12px; }
+.badge-red    { background: #b71c1c; color: #fff; border-radius: 12px; padding: 2px 8px; font-size: 12px; }
+
+.full-height  { height: 100%; }
+.flex-center  { display: flex; align-items: center; justify-content: center; }
+
+// ── Bottom sheet ──────────────────────────────────────────────────────────────
+.bottom-sheet-container {
+  border-radius: 16px 16px 0 0 !important;
+  overflow: hidden;
+}
+
+// ── Card ──────────────────────────────────────────────────────────────────────
+mat-card { border-radius: 12px !important; }
+
+// ── Snackbar ──────────────────────────────────────────────────────────────────
+.snack-success .mdc-snackbar__surface { background: #2e7d32 !important; }
+.snack-error   .mdc-snackbar__surface { background: #b71c1c !important; }
+
+// ── Lot marker ────────────────────────────────────────────────────────────────
+.lot-marker {
+  width: 32px; height: 32px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.4);
+  cursor: pointer;
+
+  &.green { background: #2e7d32; }
+  &.amber { background: #e65100; }
+  &.red   { background: #b71c1c; }
+}

@@ -1,0 +1,23 @@
+.app-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.spacer { flex: 1; }
+
+.app-content {
+  margin-top: 64px;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}

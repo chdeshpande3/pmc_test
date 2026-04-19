@@ -1,0 +1,41 @@
+<div class="nav-page" *ngIf="!loading && lot; else loader">
+
+  <!-- En-route banner -->
+  <div class="en-route-banner">
+    <div class="banner-left">
+      <mat-icon>navigation</mat-icon>
+      <div>
+        <div class="banner-title">Navigating to {{ lot.name }}</div>
+        <div class="banner-sub">{{ lot.address }}</div>
+      </div>
+    </div>
+    <div class="banner-slots" [class.danger]="freeSlotsLive < 5">
+      <span class="slots-num">{{ freeSlotsLive }}</span>
+      <span class="slots-label">slots free</span>
+    </div>
+  </div>
+
+  <!-- Deviation warning -->
+  <div class="deviation-warn" *ngIf="deviated">
+    <mat-icon>warning</mat-icon>
+    You've deviated from route. Reservation may be cancelled.
+  </div>
+
+  <!-- Map -->
+  <div #navMap class="nav-map"></div>
+
+  <!-- Bottom actions -->
+  <div class="nav-actions">
+    <button mat-stroked-button (click)="back()">
+      <mat-icon>arrow_back</mat-icon> Back
+    </button>
+    <button mat-flat-button color="primary" (click)="openMapsNavigation()">
+      <mat-icon>open_in_new</mat-icon> Open in Maps
+    </button>
+  </div>
+
+</div>
+
+<ng-template #loader>
+  <div class="loader-center"><mat-spinner diameter="48"></mat-spinner></div>
+</ng-template>

@@ -1,0 +1,21 @@
+<mat-card class="lot-card" matRipple (click)="selected.emit(lot)">
+  <div class="card-row">
+    <div class="status-dot" [class]="colour"></div>
+    <div class="card-info">
+      <div class="lot-name">{{ lot.name }}</div>
+      <div class="lot-address">{{ lot.address }}</div>
+      <div class="lot-meta">
+        <span class="dist" *ngIf="distStr">📍 {{ distStr }}</span>
+        <span class="hours">🕐 {{ lot.operating_hours }}</span>
+      </div>
+    </div>
+    <div class="card-slots">
+      <div class="free-count" [class]="colour">{{ free }}</div>
+      <div class="free-label">free / {{ total }}</div>
+      <div class="rate-hint">₹{{ lot.rate_4w }}/hr</div>
+    </div>
+  </div>
+  <mat-progress-bar mode="determinate" [value]="lot.occupancy_pct"
+    [color]="colour === 'green' ? 'primary' : colour === 'amber' ? 'accent' : 'warn'">
+  </mat-progress-bar>
+</mat-card>

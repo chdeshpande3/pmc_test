@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="app-toolbar">
+  <button mat-icon-button (click)="router.navigate(['/'])" aria-label="Home">
+    <mat-icon>local_parking</mat-icon>
+  </button>
+  <span class="brand" routerLink="/">ParkPune</span>
+  <span class="spacer"></span>
+
+  <button mat-icon-button routerLink="/my-car" aria-label="My car"
+          *ngIf="auth.isLoggedIn">
+    <mat-icon>directions_car</mat-icon>
+  </button>
+
+  <button mat-icon-button routerLink="/auth" aria-label="Login"
+          *ngIf="!auth.isLoggedIn">
+    <mat-icon>person_outline</mat-icon>
+  </button>
+
+  <button mat-icon-button (click)="auth.logout()" aria-label="Logout"
+          *ngIf="auth.isLoggedIn">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<main class="app-content">
+  <router-outlet></router-outlet>
+</main>

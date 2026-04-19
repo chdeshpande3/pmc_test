@@ -1,0 +1,123 @@
+.booking-page {
+  padding: 0 0 24px;
+  min-height: 100%;
+  background: #f5f7fa;
+}
+
+.page-header {
+  background: #1565C0;
+  color: #fff;
+  padding: 20px 16px;
+  h2 { margin: 0 0 4px; font-size: 20px; }
+  p  { margin: 0; font-size: 13px; opacity: 0.85; }
+}
+
+.booking-form {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.full-width { width: 100%; }
+
+.section-label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.vehicle-type-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.type-card {
+  flex: 1;
+  padding: 12px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  font-size: 14px;
+  small { color: #888; font-size: 12px; }
+
+  &.selected { border-color: #1565C0; background: #e3f2fd; }
+}
+
+.amount-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 8px 0;
+  font-size: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+
+  .amount { font-size: 24px; color: #1565C0; font-weight: 700; }
+}
+
+.pay-btn {
+  height: 52px;
+  font-size: 16px;
+  border-radius: 26px !important;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+// ── Success screen ────────────────────────────────────────────────────────────
+.success-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px;
+  text-align: center;
+
+  .success-icon { font-size: 72px; width: 72px; height: 72px; color: #2e7d32; margin-bottom: 8px; }
+  h2 { margin: 0 0 4px; color: #2e7d32; }
+  p  { color: #888; margin: 0 0 24px; }
+}
+
+.qr-container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+  margin-bottom: 24px;
+}
+
+.qr-image { width: 200px; height: 200px; display: block; }
+
+.booking-info {
+  width: 100%;
+  max-width: 340px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 14px;
+  span { color: #888; }
+}
+
+.whatsapp-hint { font-size: 13px; color: #2e7d32; margin-bottom: 24px; }
+
+.home-btn {
+  width: 100%;
+  max-width: 280px;
+  height: 48px;
+  border-radius: 24px !important;
+  font-size: 15px;
+}
+
+.loader-center { display: flex; align-items: center; justify-content: center; height: 100%; }

@@ -1,0 +1,12 @@
+<div class="sheet-handle"></div>
+<div class="sheet-header">
+  <span class="sheet-title">Nearby Parking</span>
+  <span class="sheet-subtitle">{{ lots.length }} lots found</span>
+</div>
+<div class="sheet-list">
+  <app-lot-card
+    *ngFor="let lot of lots"
+    [lot]="lot"
+    (selected)="goToLot($event)">
+  </app-lot-card>
+</div>

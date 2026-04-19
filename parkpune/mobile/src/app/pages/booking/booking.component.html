@@ -1,0 +1,108 @@
+<div class="booking-page" *ngIf="!loading; else loader">
+
+  <!-- QR success screen -->
+  <div class="success-screen" *ngIf="paymentDone && booking">
+    <mat-icon class="success-icon">check_circle</mat-icon>
+    <h2>Booking Confirmed!</h2>
+    <p>Show this QR at the gate</p>
+
+    <div class="qr-container">
+      <img [src]="booking.qr_code" alt="QR code" class="qr-image">
+    </div>
+
+    <div class="booking-info">
+      <div class="info-row">
+        <span>Vehicle</span><strong>{{ booking.vehicle_number }}</strong>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info-row">
+        <span>Lot</span><strong>{{ lot?.name }}</strong>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info-row">
+        <span>Valid till</span>
+        <strong>{{ booking.end_time | date:'d MMM, h:mm a' }}</strong>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info-row">
+        <span>Amount paid</span>
+        <strong>{{ booking.amount_paid | inr }}</strong>
+      </div>
+    </div>
+
+    <p class="whatsapp-hint">📱 Confirmation sent to your WhatsApp</p>
+
+    <button mat-flat-button color="primary" (click)="goHome()" class="home-btn">
+      Back to Map
+    </button>
+  </div>
+
+  <!-- Booking form -->
+  <div *ngIf="!paymentDone && lot">
+    <div class="page-header">
+      <h2>Reserve at {{ lot.name }}</h2>
+      <p>{{ lot.address }}</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="booking-form">
+      <!-- Vehicle number -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Vehicle number</mat-label>
+        <input matInput formControlName="vehicle_number" placeholder="MH12AB1234"
+               style="text-transform:uppercase">
+        <mat-error>Enter valid number (e.g. MH12AB1234)</mat-error>
+      </mat-form-field>
+
+      <!-- Vehicle type -->
+      <mat-label class="section-label">Vehicle type</mat-label>
+      <mat-radio-group formControlName="vehicle_type" class="vehicle-type-group">
+        <mat-card class="type-card" [class.selected]="form.value.vehicle_type === '4w'"
+                  (click)="form.patchValue({vehicle_type: '4w'})">
+          <mat-radio-button value="4w">
+            🚗 Four-wheeler<br>
+            <small>₹{{ lot.rate_4w }}/hr</small>
+          </mat-radio-button>
+        </mat-card>
+        <mat-card class="type-card" [class.selected]="form.value.vehicle_type === '2w'"
+                  (click)="form.patchValue({vehicle_type: '2w'})">
+          <mat-radio-button value="2w">
+            🛵 Two-wheeler<br>
+            <small>₹{{ lot.rate_2w }}/hr</small>
+          </mat-radio-button>
+        </mat-card>
+      </mat-radio-group>
+
+      <!-- Duration -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Duration (hours)</mat-label>
+        <mat-select formControlName="duration_hours">
+          <mat-option [value]="1">1 hour</mat-option>
+          <mat-option [value]="2">2 hours</mat-option>
+          <mat-option [value]="3">3 hours</mat-option>
+          <mat-option [value]="4">4 hours</mat-option>
+          <mat-option [value]="6">6 hours</mat-option>
+          <mat-option [value]="8">8 hours</mat-option>
+          <mat-option [value]="12">12 hours</mat-option>
+          <mat-option [value]="24">Full day</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Amount summary -->
+      <div class="amount-summary">
+        <span>Estimated amount</span>
+        <strong class="amount">{{ estimatedAmount | inr }}</strong>
+      </div>
+
+      <button mat-flat-button color="primary" type="submit" class="pay-btn"
+              [disabled]="form.invalid || submitting">
+        <mat-spinner diameter="20" *ngIf="submitting"></mat-spinner>
+        <span *ngIf="!submitting">Pay via UPI / Razorpay</span>
+      </button>
+    </form>
+  </div>
+
+</div>
+
+<ng-template #loader>
+  <div class="loader-center"><mat-spinner diameter="48"></mat-spinner></div>
+</ng-template>

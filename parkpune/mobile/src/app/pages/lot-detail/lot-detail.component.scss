@@ -1,0 +1,87 @@
+.detail-page {
+  height: 100%;
+  overflow-y: auto;
+  background: #f5f7fa;
+}
+
+.detail-header {
+  padding: 16px;
+  color: #fff;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  &.green { background: linear-gradient(135deg, #2e7d32, #43a047); }
+  &.amber { background: linear-gradient(135deg, #e65100, #ef6c00); }
+  &.red   { background: linear-gradient(135deg, #b71c1c, #c62828); }
+
+  h1 { margin: 0 0 4px; font-size: 20px; font-weight: 700; }
+  p  { margin: 0; font-size: 13px; opacity: 0.9; }
+}
+
+.back-btn { color: #fff; flex-shrink: 0; }
+
+.header-info { flex: 1; }
+
+.avail-card {
+  margin: 16px;
+}
+
+.avail-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 12px;
+}
+
+.avail-item {
+  text-align: center;
+  flex: 1;
+}
+
+.avail-count {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  &.green { color: #2e7d32; }
+  &.amber { color: #e65100; }
+  &.red   { color: #b71c1c; }
+  &.total-free { font-size: 40px; }
+}
+
+.avail-label { font-size: 11px; color: #888; margin-top: 2px; }
+.avail-total  { font-size: 11px; color: #aaa; }
+
+.updated-hint { font-size: 11px; color: #aaa; text-align: right; margin-top: 6px; }
+
+.rates-card {
+  margin: 0 16px 16px;
+  mat-card-header { margin-bottom: 12px; }
+}
+
+.rate-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.action-btns {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px 24px;
+}
+
+.action-btn {
+  flex: 1;
+  height: 48px;
+  font-size: 15px;
+  border-radius: 24px !important;
+}
+
+.loader-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

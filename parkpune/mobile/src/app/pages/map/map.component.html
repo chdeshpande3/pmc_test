@@ -1,0 +1,22 @@
+<div class="map-wrapper">
+  <!-- Mapbox container -->
+  <div #mapContainer class="map-container"></div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" *ngIf="loading">
+    <mat-spinner diameter="48"></mat-spinner>
+    <p>Loading Pune parking lots…</p>
+  </div>
+
+  <!-- Offline banner -->
+  <div class="offline-banner" *ngIf="!loading && lots.length === 0">
+    <mat-icon>wifi_off</mat-icon>
+    Showing cached data — connect to refresh
+  </div>
+
+  <!-- FAB: open lot list -->
+  <button mat-fab color="primary" class="list-fab"
+          (click)="openBottomSheet()" aria-label="Show parking list">
+    <mat-icon>list</mat-icon>
+  </button>
+</div>
